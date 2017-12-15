@@ -3,3 +3,25 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+GET         /v1/users                          controllers.UserController.getAll
+GET         /v1/users/:id                      controllers.UserController.getById(id: Long)
+PUT         /v1/users/:id                      controllers.UserController.update(id: Long)
+DELETE      /v1/users/:id                      controllers.UserController.deleteById(id: Long)
+POST        /v1/users                          controllers.UserController.setUser
+
+GET         /v1/cars                           controllers.CarController.getAll
+GET         /v1/cars/:id                       controllers.CarController.getById(id: Long)
+PUT         /v1/cars/:id                       controllers.CarController.update(id: Long)
+DELETE      /v1/cars/:id                       controllers.CarController.deleteById(id: Long)
+POST        /v1/cars                           controllers.CarController.setCar
+
+GET         /v1/autostations                  controllers.AutostationController.getAll
+GET         /v1/autostations/:id              controllers.AutostationController.getById(id: Long)
+PUT         /v1/autostations/:id              controllers.AutostationController.update(id: Long)
+DELETE      /v1/autostations/:id              controllers.AutostationController.deleteById(id: Long)
+POST        /v1/autostations                  controllers.AutostationController.setAutostation
+
+GET         /v1/users/:userId/cars            controllers.UserCarController.getAllCarsUser(userId: Long)
+GET         /v1/users/:userId/cars/:carId     controllers.UserCarController.getByUserIdAndCarId(userId: Long, carId: Long)
+DELETE      /v1/users/:userId/cars/:carId     controllers.UserCarController.deleteByUserIdAndCarId(userId: Long, carId: Long)
+POST        /v1/users/:userId/cars/:carId     controllers.UserCarController.setUserCar(userId: Long, carId: Long)
