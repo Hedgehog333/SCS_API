@@ -32,3 +32,9 @@ GET     /v1/autostations/:id/queues/:date/cars/:userCarId   controllers.QueueCon
 PUT     /v1/autostations/:id/queues/:date/cars/:userCarId   controllers.QueueController.update(id: Long, date: String, userCarId: Long)
 DELETE  /v1/autostations/:id/queues/:date/cars/:userCarId   controllers.QueueController.delete(id: Long, date: String, userCarId: Long)
 POST    /v1/autostations/:id/queues/:date/cars/:userCarId   controllers.QueueController.create(id: Long, date: String, userCarId: Long)
+
+GET     /v1/spares                          controllers.SpareController.getAll
+GET     /v1/spares/:id                      controllers.SpareController.getById(id: Long)
+PUT     /v1/spares/:id                      controllers.SpareController.update(id: Long)
+DELETE  /v1/spares/:id                      controllers.SpareController.deleteById(id: Long)
+POST    /v1/spares                          controllers.SpareController.setSpare
