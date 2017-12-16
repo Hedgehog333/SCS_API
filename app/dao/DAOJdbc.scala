@@ -4,7 +4,7 @@ import java.sql.ResultSet
 
 import play.api.db.{Database, Databases}
 
-trait DAOJdbc[T] extends DAO[T]{
+trait DAOJdbc[T] {
   protected[dao] def maker(resultSet: ResultSet): T
   protected[DAOJdbc] def withDatabase[T](block: Database => T): Unit = {
     Databases.withDatabase(

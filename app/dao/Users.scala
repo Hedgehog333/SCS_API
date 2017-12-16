@@ -4,7 +4,7 @@ import java.sql.{Date, ResultSet}
 import models.User
 import scala.util.{Failure, Success, Try}
 
-object Users extends DAOJdbc[User] {
+object Users extends DAOJdbc[User] with DAO[User]{
   override def create(obj: User): Try[Long] = {
     var data: Try[Long] = Try(throw new Exception("Error with insert User"))
     withDatabase{ database =>

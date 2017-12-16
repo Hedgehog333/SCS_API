@@ -4,7 +4,7 @@ import java.sql.{ResultSet, Time}
 import models.Autostation
 import scala.util.{Failure, Success, Try}
 
-object Autostations extends DAOJdbc[Autostation] {
+object Autostations extends DAOJdbc[Autostation] with DAO[Autostation] {
   override def create(obj: Autostation): Try[Long] = {
     var data: Try[Long] = Try(throw new Exception("Error with insert Autostation"))
     withDatabase{ database =>

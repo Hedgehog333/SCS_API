@@ -6,7 +6,7 @@ import models.Car
 
 import scala.util.{Failure, Success, Try}
 
-object Cars extends DAOJdbc[Car] {
+object Cars extends DAOJdbc[Car] with DAO[Car] {
   override def create(obj: Car): Try[Long] = {
     var data: Try[Long] = Try(throw new Exception("Error with insert User"))
     withDatabase{ database =>

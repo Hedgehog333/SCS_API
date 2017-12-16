@@ -7,7 +7,7 @@ import models.UserCar
 import scala.util.{Failure, Success, Try}
 
 object UserCars extends DAOJdbc[UserCar] {
-  override def create(obj: UserCar): Try[Long] = {
+  def create(obj: UserCar): Try[Long] = {
     var data: Try[Long] = Try(throw new Exception("Error with insert User"))
     withDatabase{ database =>
       val connection = database.getConnection()
@@ -31,8 +31,6 @@ object UserCars extends DAOJdbc[UserCar] {
 
     data
   }
-
-  override def getById(id: Long): Try[UserCar] = ???
 
   def getById(userId: Long, carId: Long): Try[UserCar] = {
     var userCar: Try[UserCar] = Try(throw new Exception(s"User car id=$carId Not Found with user id=$userId"))
@@ -58,8 +56,6 @@ object UserCars extends DAOJdbc[UserCar] {
     userCar
   }
 
-  override def getAll(): Try[Set[UserCar]] = ???
-
   def getAll(idUser: Long): Try[Set[UserCar]] = {
     var set: Set[UserCar] = Set()
     withDatabase { database =>
@@ -76,10 +72,6 @@ object UserCars extends DAOJdbc[UserCar] {
 
     Try(set)
   }
-
-  override def update(obj: UserCar): Try[Boolean] = ???
-
-  override def delete(id: Long): Try[Boolean] = ???
 
   def deleteCar(userId: Long, carId: Long): Try[Boolean] = {
     var data: Try[Boolean] = Try(throw new Exception("Error with delete user car"))
