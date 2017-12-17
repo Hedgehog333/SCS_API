@@ -6,8 +6,8 @@ import play.api.libs.json.{JsError, JsSuccess, JsValue, Json}
 
 import scala.util.{Failure, Success}
 
-object UserCarService extends Service[JsValue] {
-  override def create(jsonUserCar: JsValue): JsValue = {
+object UserCarService {
+  def create(jsonUserCar: JsValue): JsValue = {
     jsonUserCar.validate[UserCar] match {
       case success: JsSuccess[UserCar] => UserCars.create(UserCar.fromJson(success)) match {
         case Success(s) => ReturnedJson.ok("User car created!", Json.obj("id" -> s.toLong))
@@ -17,9 +17,7 @@ object UserCarService extends Service[JsValue] {
     }
   }
 
-  override def select: JsValue = ???
-
-  override def select(userId: Long): JsValue = {
+  def select(userId: Long): JsValue = {
     UserCars.getAll(userId) match {
       case Success(v) => ReturnedJson.ok("User cars returned!", Json.toJson(v))
       case Failure(e) => ReturnedJson.internalServerError("Error with returned user car! " + e.getMessage)
@@ -32,10 +30,6 @@ object UserCarService extends Service[JsValue] {
       case Failure(e) => ReturnedJson.internalServerError("Error with returned user car! " + e.getMessage)
     }
   }
-
-  override def update(jsonUserCar: JsValue, id: Long): JsValue = ???
-
-  override def delete(id: Long): JsValue = ???
 
   def deleteCar(userId: Long, carId: Long): JsValue = {
     UserCars.deleteCar(userId, carId) match {

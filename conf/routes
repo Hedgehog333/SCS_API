@@ -38,3 +38,9 @@ GET     /v1/spares/:id                      controllers.SpareController.getById(
 PUT     /v1/spares/:id                      controllers.SpareController.update(id: Long)
 DELETE  /v1/spares/:id                      controllers.SpareController.deleteById(id: Long)
 POST    /v1/spares                          controllers.SpareController.setSpare
+
+GET     /v1/cars/:userCarId/statistics                  controllers.StatisticController.getById(userCarId: Long)
+GET     /v1/cars/:userCarId/statistics/:detailNumber    controllers.StatisticController.getSpareStatistic(userCarId: Long, detailNumber: Long)
+PUT     /v1/cars/:userCarId/statistics/:detailNumber    controllers.StatisticController.update(userCarId: Long, detailNumber: Long)
+DELETE  /v1/cars/:userCarId/statistics/:detailNumber    controllers.StatisticController.deleteById(userCarId: Long, detailNumber: Long)
+POST    /v1/cars/:userCarId/statistics                  controllers.StatisticController.setStatistic(userCarId: Long)
