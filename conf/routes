@@ -26,6 +26,12 @@ GET     /v1/users/:userId/cars/:carId       controllers.UserCarController.getByU
 DELETE  /v1/users/:userId/cars/:carId       controllers.UserCarController.deleteByUserIdAndCarId(userId: Long, carId: Long)
 POST    /v1/users/:userId/cars/:carId       controllers.UserCarController.setUserCar(userId: Long, carId: Long)
 
+GET     /v1/spares                          controllers.SpareController.getAll
+GET     /v1/spares/:id                      controllers.SpareController.getById(id: Long)
+PUT     /v1/spares/:id                      controllers.SpareController.update(id: Long)
+DELETE  /v1/spares/:id                      controllers.SpareController.deleteById(id: Long)
+POST    /v1/spares                          controllers.SpareController.setSpare
+
 GET     /v1/autostations/:id/queues/:date                   controllers.QueueController.getAllQueues(id: Long, date: String)
 GET     /v1/autostations/:id/queues/:date/cars              controllers.QueueController.getAllCars(id: Long, date: String)
 GET     /v1/autostations/:id/queues/:date/cars/:userCarId   controllers.QueueController.getCar(id: Long, date: String, userCarId: Long)
@@ -33,14 +39,8 @@ PUT     /v1/autostations/:id/queues/:date/cars/:userCarId   controllers.QueueCon
 DELETE  /v1/autostations/:id/queues/:date/cars/:userCarId   controllers.QueueController.delete(id: Long, date: String, userCarId: Long)
 POST    /v1/autostations/:id/queues/:date/cars/:userCarId   controllers.QueueController.create(id: Long, date: String, userCarId: Long)
 
-GET     /v1/spares                          controllers.SpareController.getAll
-GET     /v1/spares/:id                      controllers.SpareController.getById(id: Long)
-PUT     /v1/spares/:id                      controllers.SpareController.update(id: Long)
-DELETE  /v1/spares/:id                      controllers.SpareController.deleteById(id: Long)
-POST    /v1/spares                          controllers.SpareController.setSpare
-
-GET     /v1/cars/:userCarId/statistics                  controllers.StatisticController.getById(userCarId: Long)
-GET     /v1/cars/:userCarId/statistics/:detailNumber    controllers.StatisticController.getSpareStatistic(userCarId: Long, detailNumber: Long)
-PUT     /v1/cars/:userCarId/statistics/:detailNumber    controllers.StatisticController.update(userCarId: Long, detailNumber: Long)
-DELETE  /v1/cars/:userCarId/statistics/:detailNumber    controllers.StatisticController.deleteById(userCarId: Long, detailNumber: Long)
-POST    /v1/cars/:userCarId/statistics                  controllers.StatisticController.setStatistic(userCarId: Long)
+GET     /v1/cars/:userCarId/statistics                      controllers.StatisticController.getById(userCarId: Long)
+GET     /v1/cars/:userCarId/statistics/:detailNumber        controllers.StatisticController.getSpareStatistic(userCarId: Long, detailNumber: Long)
+PUT     /v1/cars/:userCarId/statistics/:detailNumber        controllers.StatisticController.update(userCarId: Long, detailNumber: Long)
+DELETE  /v1/cars/:userCarId/statistics/:detailNumber        controllers.StatisticController.deleteById(userCarId: Long, detailNumber: Long)
+POST    /v1/cars/:userCarId/statistics                      controllers.StatisticController.setStatistic(userCarId: Long)
