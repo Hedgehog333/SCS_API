@@ -9,6 +9,8 @@ PUT     /v1/users/:id                       controllers.UserController.update(id
 DELETE  /v1/users/:id                       controllers.UserController.deleteById(id: Long)
 POST    /v1/users                           controllers.UserController.setUser
 
+POST    /v1/logins/:role                    controllers.LoginController.signIn(role: String)
+
 GET     /v1/cars                            controllers.CarController.getAll
 GET     /v1/cars/:id                        controllers.CarController.getById(id: Long)
 PUT     /v1/cars/:id                        controllers.CarController.update(id: Long)

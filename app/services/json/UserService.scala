@@ -31,6 +31,16 @@ object UserService extends Service[JsValue]{
     }
   }
 
+  def selectLogin(jsonUserLogin: JsValue): JsValue = {
+    jsonUserLogin.validate[dto.UserLogin] match {
+      case success: JsSuccess[dto.UserLogin] => Users.getByEmailAndPassword(success.get) match {
+        case Success(s) => ReturnedJson.ok("User found!", Json.obj("id" -> s.id))
+        case Failure(e) => ReturnedJson.internalServerError("Error with found user! " + e.getMessage)
+      }
+      case JsError(error) => ReturnedJson.bedRequest
+    }
+  }
+
   override def update(jsonUser: JsValue, id: Long): JsValue = {
     jsonUser.validate[User] match {
       case success: JsSuccess[User] => {

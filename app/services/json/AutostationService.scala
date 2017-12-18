@@ -31,6 +31,16 @@ object AutostationService extends Service[JsValue] {
     }
   }
 
+  def selectLogin(jsonUserLogin: JsValue): JsValue = {
+    jsonUserLogin.validate[dto.AutostationLogin] match {
+      case success: JsSuccess[dto.AutostationLogin] => Autostations.getByEmailAndPassword(success.get) match {
+        case Success(s) => ReturnedJson.ok("Autostation found!", Json.obj("id" -> s.id))
+        case Failure(e) => ReturnedJson.internalServerError("Error with found autostation! " + e.getMessage)
+      }
+      case JsError(error) => ReturnedJson.bedRequest
+    }
+  }
+
   override def update(jsonAutostation: JsValue, id: Long): JsValue = {
     jsonAutostation.validate[Autostation] match {
       case success: JsSuccess[Autostation] => {
