@@ -8,19 +8,23 @@ import play.api.mvc.{AbstractController, ControllerComponents}
 class UserCarController @Inject() (cc: ControllerComponents) extends AbstractController(cc){
 
   def getAllCarsUser(userId: Long) = Action {
-    Ok(UserCarService.select(userId))
+    Ok(UserCarService.select(userId)).withHeaders(headers, origin, methods)
   }
 
   def getByUserIdAndCarId(userId: Long, carId: Long) = Action {
-    Ok(UserCarService.select(userId, carId))
+    Ok(UserCarService.select(userId, carId)).withHeaders(headers, origin, methods)
   }
 
   def setUserCar(userId: Long, carId: Long) = Action { implicit request =>
     val bodyAsJson: JsValue = request.body.asJson.get
-    Ok(UserCarService.create(bodyAsJson))
+    Ok(UserCarService.create(bodyAsJson)).withHeaders(headers, origin, methods)
   }
 
   def deleteByUserIdAndCarId(userId: Long, carId: Long) = Action {
-    Ok(UserCarService.deleteCar(userId, carId))
+    Ok(UserCarService.deleteCar(userId, carId)).withHeaders(headers, origin, methods)
   }
+
+  def headers = (ACCESS_CONTROL_ALLOW_HEADERS -> "Origin, Content-Type, Accept")
+  def origin = (ACCESS_CONTROL_ALLOW_ORIGIN -> "*")
+  def methods = (ACCESS_CONTROL_ALLOW_METHODS -> "POST, GET, PUT, DELETE")
 }

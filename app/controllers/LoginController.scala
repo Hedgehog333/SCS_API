@@ -12,6 +12,10 @@ class LoginController @Inject() (cc: ControllerComponents) extends AbstractContr
     val bodyAsJson: JsValue = request.body.asJson.get
     val result = LoginService.login(bodyAsJson, role)
 
-    Ok(result._2)
+    Ok(result._2).withHeaders(headers, origin, methods)
   }
+
+  def headers = (ACCESS_CONTROL_ALLOW_HEADERS -> "Origin, Content-Type, Accept")
+  def origin = (ACCESS_CONTROL_ALLOW_ORIGIN -> "*")
+  def methods = (ACCESS_CONTROL_ALLOW_METHODS -> "POST, GET, PUT, DELETE")
 }
